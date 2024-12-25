@@ -1,0 +1,58 @@
+<form #signupForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="grid gap-6 md:grid-cols-2">
+    <app-form-field
+      label="First name"
+      for="first_name"
+      name="firstName"
+      placeholder="John"
+    ></app-form-field>
+    <app-form-field
+      label="Last name"
+      for="last_name"
+      name="lastName"
+      placeholder="Doe"
+    ></app-form-field>
+  </div>
+  <app-form-field
+    label="Username"
+    for="username"
+    name="username"
+    placeholder="username"
+  ></app-form-field>
+  <app-form-field
+    label="Email Address"
+    for="email"
+    name="email"
+    inpType="email"
+    placeholder="John.doe@gmail.com"
+  ></app-form-field>
+  <app-form-field
+    label="Password"
+    for="password"
+    name="password"
+    inpType="password"
+    placeholder="•••••••••"
+  ></app-form-field>
+  <app-form-field
+    label="Confirm password"
+    for="confirm_password"
+    name="confirm_password"
+    inpType="password"
+    placeholder="•••••••••"
+  ></app-form-field>
+
+  <!--      [passwordMatch]="'password'"-->
+
+  <div class="flex mb-4">
+    <p class="text-sm font-medium text-gray-900 dark:text-gray-300 mr-2">
+      Already have an account?
+    </p>
+    <a routerLink="/login" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Login</a>.
+  </div>
+  <button type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-blue-400 disabled:dark:bg-blue-500 disabled:cursor-not-allowed"
+          [disabled]="!signupForm.valid"
+  >
+    Sign Up
+  </button>
+</form>
