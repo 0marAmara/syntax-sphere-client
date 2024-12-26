@@ -8,6 +8,8 @@
     email
     required
     ngModel
+    #email="ngModel"
+    [error]="email.errors!==null && email.dirty===true"
   >
   </app-form-field>
   <app-form-field
@@ -18,7 +20,10 @@
     placeholder="•••••••••"
     required
     minlength="6"
-    ngModel>
+    #password="ngModel"
+    [error]="password.errors!==null && password.dirty===true"
+    ngModel
+  >
 
   </app-form-field>
   <div class="flex flex-col items-start gap-4 justify-between">

@@ -7,6 +7,7 @@
       placeholder="John"
       formControlName="firstName"
       [error]="formInputError('firstName')"
+      [errorMsg]="formInputError('firstName') ? getFirstNameErrorMessage() : ''"
     ></app-form-field>
     <app-form-field
       label="Last name"
@@ -15,6 +16,7 @@
       placeholder="Doe"
       formControlName="lastName"
       [error]="formInputError('lastName')"
+      [errorMsg]="formInputError('lastName') ? getLastNameErrorMessage() : ''"
     ></app-form-field>
   </div>
   <app-form-field
@@ -24,6 +26,7 @@
     placeholder="username"
     formControlName="username"
     [error]="formInputError('username')"
+    [errorMsg]="formInputError('username') ? getUsernameErrorMessage() : ''"
   ></app-form-field>
   <app-form-field
     label="Email Address"
@@ -33,6 +36,7 @@
     placeholder="John.doe@gmail.com"
     formControlName="email"
     [error]="formInputError('email')"
+    [errorMsg]="formInputError('email') ? getEmailErrorMessage() : ''"
   ></app-form-field>
   <app-form-field
     label="Password"
@@ -42,6 +46,7 @@
     placeholder="•••••••••"
     formControlName="password"
     [error]="formInputError('password')"
+    [errorMsg]="formInputError('password') ? getPasswordErrorMessage() : ''"
   ></app-form-field>
   <app-form-field
     label="Confirm password"
@@ -51,10 +56,8 @@
     placeholder="•••••••••"
     formControlName="confirmPassword"
     [error]="formInputError('confirmPassword')"
+    [errorMsg]="formInputError('confirmPassword') ? getConfirmPasswordErrorMessage() : ''"
   ></app-form-field>
-
-  <!--      [passwordMatch]="'password'"-->
-
   <div class="flex mb-4">
     <p class="text-sm font-medium text-gray-900 dark:text-gray-300 mr-2">
       Already have an account?
@@ -63,8 +66,7 @@
   </div>
   <button type="submit"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-blue-400 disabled:dark:bg-blue-500 disabled:cursor-not-allowed"
-          [disabled]="!signupForm.valid"
-  >
+          [disabled]="!signupForm.valid">
     Sign Up
   </button>
 </form>

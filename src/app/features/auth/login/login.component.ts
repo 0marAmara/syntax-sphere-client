@@ -18,6 +18,6 @@ export class LoginComponent {
   protected readonly onsubmit = onsubmit;
 
   onSubmit(form: NgForm) {
-    console.log(form);
+
   }
 }
