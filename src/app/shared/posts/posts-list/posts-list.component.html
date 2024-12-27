@@ -1,0 +1,14 @@
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  @if (posts().length === 0) {
+    <li post-skeleton></li>
+    <li post-skeleton></li>
+    <li post-skeleton></li>
+    <li post-skeleton></li>
+    <li post-skeleton></li>
+  } @else {
+    @for (post of posts(); track post.id) {
+      <li [post]="post"></li>
+    }
+  }
+  <ng-container></ng-container>
+</ol>

@@ -11,8 +11,8 @@ export class HttpService {
   private http = inject(HttpClient);
   private baseUrl: string = environment.baseUrl;
 
-  get<T>(endpoint: string, params: any): Observable<T> {
-    return this.http.get<T>(this.baseUrl + endpoint, {params: params});
+  get<T>(endpoint: string, params?: any): Observable<T> {
+    return this.http.get<T>(this.baseUrl + endpoint, {params});
   }
 
   post<T>(endpoint: string, data: any): Observable<T> {

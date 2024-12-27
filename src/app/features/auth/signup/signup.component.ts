@@ -60,8 +60,7 @@ export class SignupComponent implements OnInit {
     }
     this.authService.signup(user).subscribe({
       next: (response) => {
-        //TODO navigate to posts
-        this.router.navigate(['/']);
+        this.router.navigate(['/posts/']);
       },
       error: (error) => {
         console.log(error, 'error');

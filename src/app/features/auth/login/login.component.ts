@@ -31,8 +31,7 @@ export class LoginComponent {
     }
     this.authService.login(user).subscribe({
       next: (res) => {
-        //TODO navigate to posts
-        this.router.navigate(['/']);
+        this.router.navigate(['/posts']);
       },
       error: err => {
         this.errorMessage = err.error.error;
