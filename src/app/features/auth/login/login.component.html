@@ -1,15 +1,14 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <app-form-field
-    for="email"
-    inpType="email"
-    name="email"
-    [label]="'Email Address'"
-    placeholder="john.doe@company.com"
-    email
+    for="username"
+    name="username"
+    [label]="'Username'"
+    placeholder="JohnDoe"
     required
     ngModel
-    #email="ngModel"
-    [error]="email.errors!==null && email.dirty===true"
+    #username="ngModel"
+    minlength="4"
+    [error]="username.errors!==null && username.dirty===true && username.touched!||errorMessage.trim().length!==0"
   >
   </app-form-field>
   <app-form-field
@@ -21,10 +20,9 @@
     required
     minlength="6"
     #password="ngModel"
-    [error]="password.errors!==null && password.dirty===true"
+    [error]="password.errors!==null && password.dirty===true && password.touched!||errorMessage.trim().length!==0"
     ngModel
   >
-
   </app-form-field>
   <div class="flex flex-col items-start gap-4 justify-between">
     <div class="flex items-center text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -34,11 +32,17 @@
         Sign Up
       </a>
     </div>
-    <button type="submit"
-            [disabled]="!form.valid"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+    @if (errorMessage) {
+      <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{errorMessage}}</p>
+    }
+    <app-button
+      type="submit"
+      [disabled]="!form.valid"
+    >
       Login
-    </button>
+    </app-button>
+
   </div>
 
 

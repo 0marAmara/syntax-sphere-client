@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -9,9 +9,12 @@ import {
   Validators
 } from '@angular/forms';
 import {PasswordMatchDirective} from './password-match.directive';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {FormFieldComponent} from '../../../shared/form-field/form-field.component';
 import {ConfirmPasswordValidator} from './confirm-password.validator';
+import {ButtonComponent} from '../../../shared/button/button.component';
+import {SignupUser} from '../../../shared/models/user.model';
+import {AuthService} from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -19,13 +22,17 @@ import {ConfirmPasswordValidator} from './confirm-password.validator';
     FormsModule,
     RouterLink,
     FormFieldComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonComponent
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent implements OnInit {
+  private authService = inject(AuthService);
+  private router = inject(Router);
   signupForm!: FormGroup;
+  errorMessage?: string;
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -44,7 +51,24 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Form submitted:', this.signupForm.value);
+    const user: SignupUser = {
+      firstName: this.signupForm.value.firstName,
+      lastName: this.signupForm.value.lastName,
+      username: this.signupForm.value.username,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password
+    }
+    this.authService.signup(user).subscribe({
+      next: (response) => {
+        //TODO navigate to posts
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        console.log(error, 'error');
+        this.errorMessage = error.error.username;
+        this.signupForm.get('username')?.setErrors([error.error.username]);
+      },
+    })
   }
 
   getFirstNameErrorMessage() {
@@ -70,7 +94,10 @@ export class SignupComponent implements OnInit {
       return 'Please enter a username.';
     } else if (this.signupForm.get('username')?.hasError('minlength')) {
       return 'Username must be at least 4 characters long.';
+    } else if (!this.signupForm.get('username')?.valid) {
+      return this.signupForm.get('username')!.errors![0][0]
     }
+
     return '';
   }
 

@@ -26,6 +26,7 @@ export class FormFieldComponent {
   @Input() formControlName?: string;
   @Input() error: boolean = false;
   @Input() errorMsg?: string;
+  @Input() minLength: number = 0;
 
   value: any = '';
   disabled = false;

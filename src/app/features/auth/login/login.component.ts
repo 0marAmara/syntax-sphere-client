@@ -1,23 +1,42 @@
-import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
 import {FormFieldComponent} from '../../../shared/form-field/form-field.component';
-import {FormsModule, NgForm} from '@angular/forms';
+import {FormGroup, FormsModule, NgForm} from '@angular/forms';
+import {ButtonComponent} from '../../../shared/button/button.component';
+import {AuthService} from '../../../core/services/auth.service';
+import {LoginUser} from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-login',
   imports: [
     RouterLink,
     FormFieldComponent,
-    FormsModule
+    FormsModule,
+    ButtonComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
-  protected readonly onsubmit = onsubmit;
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  signupForm!: FormGroup;
+  errorMessage: string="";
 
   onSubmit(form: NgForm) {
-
+    this.errorMessage="";
+    const user: LoginUser = {
+      username: form.value.username,
+      password: form.value.password,
+    }
+    this.authService.login(user).subscribe({
+      next: (res) => {
+        //TODO navigate to posts
+        this.router.navigate(['/']);
+      },
+      error: err => {
+        this.errorMessage = err.error.error;
+      }
+    })
   }
 }
