@@ -4,12 +4,20 @@ import {SignupComponent} from './features/auth/signup/signup.component';
 import {AuthLayoutComponent} from './shared/auth-layout/auth-layout.component';
 import {BaseLayoutComponent} from './shared/base-layout/base-layout.component';
 import {PostsPageComponent} from './features/posts-page/posts-page.component';
+import {authGuardFunction} from './core/guards/auth-guard.function';
+import {appGuardFunction} from './core/guards/app-guard.function';
 
 export const routes: Routes = [
   {
     path: 'auth',
     component: AuthLayoutComponent,
+    canActivateChild: [authGuardFunction],
     children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
       {
         path: 'login',
         component: LoginComponent,
@@ -23,13 +31,17 @@ export const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
-    children:[
+    canActivateChild:[appGuardFunction],
+    children: [
+      {
+        path: '',
+        redirectTo: 'posts',
+        pathMatch: 'full',
+      },
       {
         path: 'posts',
-        component:PostsPageComponent
+        component: PostsPageComponent
       }
     ]
   }
-
-
 ];
