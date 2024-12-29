@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpService} from './http.service';
-import {PostModel, PostResponse} from '../../shared/models/post.model';
+import {LikeResponse, PostModel, PostResponse} from '../../shared/models/post.model';
 import {catchError, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -18,8 +18,8 @@ export class PostsService {
     return this.http.get<PostResponse>('posts/');
   }
 
-  likePost(postId: number) {
-  // TODO implement liking posts
+  likePost(postId:string) {
+    return this.http.post<LikeResponse>(`posts/${postId}/like/`);
   }
 
 }

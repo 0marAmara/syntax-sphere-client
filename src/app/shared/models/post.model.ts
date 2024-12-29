@@ -17,3 +17,8 @@ export interface PostResponse {
   results: PostModel[];
 }
 
+export interface LikeResponse {
+  id: string,
+  user_id: number,
+  post_id: string,
+}

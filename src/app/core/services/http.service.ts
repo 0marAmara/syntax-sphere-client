@@ -17,7 +17,7 @@ export class HttpService {
     return this.http.get<T>(this.baseUrl + endpoint, {params}).pipe(catchError(this.sessionTimeoutHandler.bind(this)));
   }
 
-  post<T>(endpoint: string, data: any): Observable<T> {
+  post<T>(endpoint: string, data: any={}): Observable<T> {
     return this.http.post<T>(this.baseUrl + endpoint, data).pipe(catchError(this.sessionTimeoutHandler.bind(this)));
   }
 

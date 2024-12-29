@@ -18,4 +18,9 @@ export class PostComponent {
   private postsService=inject(PostsService);
   @Input() post!:PostModel;
 
+  onLike() {
+    this.postsService.likePost(this.post.id).subscribe(next=>{
+      console.log(next);
+    })
+  }
 }
