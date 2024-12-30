@@ -1,13 +1,11 @@
 import {HttpInterceptorFn} from '@angular/common/http';
-import {inject, Injectable} from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {getAuthTokens} from '../../shared/auth-tokens.function';
 
 
 export const authInterceptorFunction: HttpInterceptorFn = (req, next) => {
   if (req.url.includes('sign'))
     return next(req);
-  const authService = inject(AuthService);
-  const authTokens = authService.authTokens;
+  const authTokens = getAuthTokens();
 
   const modifiedRequest = req.clone({
     headers: req.headers.append('Authorization',`Bearer ${authTokens.access}`)

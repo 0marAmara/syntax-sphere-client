@@ -3,12 +3,16 @@ import {LikeIconComponent} from '../../icons/like-icon/like-icon.component';
 import {PostModel} from '../../models/post.model';
 import {PostsService} from '../../../core/services/posts.service';
 import {DatePipe} from '@angular/common';
+import {RouterLink} from '@angular/router';
+import {ButtonComponent} from '../../button/button.component';
 
 @Component({
   selector: 'li[post]',
   imports: [
     LikeIconComponent,
-    DatePipe
+    DatePipe,
+    RouterLink,
+    ButtonComponent
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'

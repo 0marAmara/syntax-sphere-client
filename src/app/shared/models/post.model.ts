@@ -10,6 +10,12 @@ export interface PostModel {
   post_id: string;
 }
 
+export interface PostElement{
+  title: string;
+  content: string;
+  url?: string;
+}
+
 export interface PostResponse {
   previous: string | null;
   next: string | null;

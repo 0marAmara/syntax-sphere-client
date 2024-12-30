@@ -1,5 +1,6 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {BUTTON_STYLES, buttonStyleType} from './button-styles';
 
 @Component({
   selector: 'app-button',
@@ -17,5 +18,11 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
 export class ButtonComponent {
   @Input() disabled: boolean=false;
   @Input() type?: string;
+  @Input() styleVariant:buttonStyleType='blue';
+
+
+  get styles(): string {
+    return BUTTON_STYLES[this.styleVariant];
+  }
 
 }

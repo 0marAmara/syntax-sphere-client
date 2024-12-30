@@ -6,6 +6,7 @@ import {BaseLayoutComponent} from './shared/base-layout/base-layout.component';
 import {PostsPageComponent} from './features/posts-page/posts-page.component';
 import {authGuardFunction} from './core/guards/auth-guard.function';
 import {appGuardFunction} from './core/guards/app-guard.function';
+import {PostPageComponent} from './features/post-page/post-page.component';
 
 export const routes: Routes = [
   {
@@ -31,7 +32,7 @@ export const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
-    canActivateChild:[appGuardFunction],
+    canActivateChild: [appGuardFunction],
     children: [
       {
         path: '',
@@ -40,7 +41,11 @@ export const routes: Routes = [
       },
       {
         path: 'posts',
-        component: PostsPageComponent
+        component: PostsPageComponent,
+      },
+      {
+        path: 'posts/:id',
+        component: PostPageComponent,
       }
     ]
   }

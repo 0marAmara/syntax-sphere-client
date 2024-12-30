@@ -11,13 +11,6 @@ import {tap} from 'rxjs';
 export class AuthService{
   private http = inject(HttpService);
 
-  get authTokens(){
-    const authTokens:AuthResponseModel={
-      refresh:localStorage.getItem('refresh')??'',
-      access:localStorage.getItem('access')??'',
-    }
-    return authTokens;
-  }
 
   signup(user:SignupUser){
     return this.http.post<AuthResponseModel>('signup/',user).pipe(tap(res=> this.authTap(res)));
