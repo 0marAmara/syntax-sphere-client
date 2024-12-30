@@ -1,5 +1,5 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {
   catchError,
   Observable,
@@ -8,12 +8,12 @@ import {
   take,
   of,
   filter,
-  BehaviorSubject
+  BehaviorSubject, map, tap
 } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
-import { getAuthTokens } from '../../shared/auth-tokens.function';
-import { AuthResponseModel } from './auth-response.model';
+import {environment} from '../../environments/environment';
+import {Router} from '@angular/router';
+import {getAuthTokens} from '../../shared/auth-tokens.function';
+import {AuthResponseModel} from './auth-response.model';
 
 @Injectable({
   providedIn: 'root' // Makes this service available application-wide
@@ -27,7 +27,7 @@ export class HttpService {
 
   // GET request method
   get<T>(endpoint: string, params?: any): Observable<T> {
-    return this.http.get<T>(this.baseUrl + endpoint, { params }).pipe(
+    return this.http.get<T>(this.baseUrl + endpoint, {params}).pipe(
       catchError(error => this.sessionTimeoutHandler(error, () => this.get(endpoint, params))) // Handles errors, especially 401 (unauthorized)
     );
   }
@@ -76,15 +76,19 @@ export class HttpService {
 
   // Handles the token refresh process
   private handleRefreshToken(): Observable<AuthResponseModel> {
-    const tokens = getAuthTokens(); // Get the current tokens
-    return this.http.post<AuthResponseModel>(`${this.baseUrl}token/refresh/`, { refresh: tokens.refresh }).pipe(
-      switchMap(response => { // Switch to the new token response
-        localStorage.setItem('refresh', response.refresh); // Update refresh token in localStorage
-        localStorage.setItem('access', response.access); // Update access token in localStorage
-        return of(response); // Return the response as an observable
+    const tokens = getAuthTokens();
+    return this.http.post<AuthResponseModel>(
+      `${this.baseUrl}token/refresh/`,
+      { refresh: tokens.refresh }
+    ).pipe(
+      tap(response => {
+        localStorage.setItem('refresh', response.refresh);
+        localStorage.setItem('access', response.access);
       })
     );
   }
+
+
 
   // Clears the session by removing tokens from localStorage
   private clearSession() {

@@ -4,11 +4,10 @@ import {PostsListComponent} from '../../shared/posts/posts-list/posts-list.compo
 @Component({
   selector: 'app-posts-page',
   imports: [
-    PostsListComponent
+    PostsListComponent,
   ],
   templateUrl: './posts-page.component.html',
   styleUrl: './posts-page.component.scss'
 })
 export class PostsPageComponent {
-
 }
