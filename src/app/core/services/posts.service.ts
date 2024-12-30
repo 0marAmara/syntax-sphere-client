@@ -13,9 +13,9 @@ export class PostsService {
   private router = inject(Router);
   private _posts: PostModel[] = [];
 
-  loadPosts() {
+  loadPosts(limit:number=10) {
     // TODO implement post pagination
-    return this.http.get<PostResponse>('posts/');
+    return this.http.get<PostResponse>('posts/',{limit});
   }
 
   likePost(postId:string) {

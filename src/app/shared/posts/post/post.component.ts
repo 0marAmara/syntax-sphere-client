@@ -1,6 +1,5 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, inject, input, output} from '@angular/core';
 import {LikeIconComponent} from '../../icons/like-icon/like-icon.component';
-import {RouterLink} from '@angular/router';
 import {PostModel} from '../../models/post.model';
 import {PostsService} from '../../../core/services/posts.service';
 import {DatePipe} from '@angular/common';
@@ -16,11 +15,12 @@ import {DatePipe} from '@angular/common';
 })
 export class PostComponent {
   private postsService=inject(PostsService);
-  @Input() post!:PostModel;
+  post = input<PostModel>();
+  likeHandler = output();
 
   onLike() {
-    this.postsService.likePost(this.post.id).subscribe(next=>{
-      console.log(next);
+    this.postsService.likePost(this.post()!.id).subscribe(()=>{
+      this.likeHandler.emit();
     })
   }
 }
