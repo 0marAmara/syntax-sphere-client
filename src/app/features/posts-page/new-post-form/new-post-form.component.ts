@@ -17,6 +17,6 @@ import {FormsModule, NgForm} from '@angular/forms';
 
 export class NewPostFormComponent {
   onSubmit(newPostForm: NgForm) {
-
+    //TODO do this and happy new year
   }
 }
