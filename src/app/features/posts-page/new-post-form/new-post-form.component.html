@@ -2,35 +2,48 @@
   <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Create a New Post</h2>
   <form class="space-y-6" #newPostForm="ngForm" (ngSubmit)="onSubmit(newPostForm)">
     <app-form-field
-      [minLength]="5"
+      minlength="5"
       placeholder="What's on your mind?"
+      ngModel
+      required
+      #title="ngModel"
       label="Title"
-      name="title"></app-form-field>
+      name="title"
+      [error]="title.errors!==null && title.dirty===true && title.touched!"
+    ></app-form-field>
     <app-text-area-field
-      [minLength]="5"
+      minlength="5"
+      ngModel
+      required
       placeholder="Share more details..."
       name="content"
+      #content="ngModel"
       label="Content"
+      [error]="content.errors!==null && content.dirty===true && content.touched!"
     ></app-text-area-field>
-
-    <div>
-      <label for="url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">URL (Optional)</label>
-      <input
-        type="url"
-        id="url"
+    @if (!urlIsEnabled){
+      <app-button
+        (click)="toggleUrl()"
+        type="button"
+      >
+        Add a URL
+      </app-button>
+    } @else {
+      <app-form-field
+        placeholder ="https://example.com"
         name="url"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-        placeholder="https://example.com"
-      />
-    </div>
+        inpType="url"
+        ngModel
+        label="URL (Optional)"
+      ></app-form-field>
+    }
 
     <div>
-      <button
-        type="submit"
-        class="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-700 dark:hover:bg-blue-800"
+      <app-button
       >
         Create Post
-      </button>
+      </app-button>
+
     </div>
   </form>
 </div>

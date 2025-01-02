@@ -18,7 +18,7 @@ import {BUTTON_STYLES, buttonStyleType} from './button-styles';
 export class ButtonComponent {
   @Input() disabled: boolean=false;
   @Input() type?: string;
-  @Input() styleVariant:buttonStyleType='blue';
+  @Input() styleVariant:buttonStyleType='default';
 
 
   get styles(): string {
