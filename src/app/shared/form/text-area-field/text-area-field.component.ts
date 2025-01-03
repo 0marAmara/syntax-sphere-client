@@ -19,6 +19,7 @@ export class TextAreaFieldComponent {
 
   ERROR_MESSAGES: Record<string, string> = {
     required: `This field is required`,
+    minlength: `This field is too short`,
   }
 
   get isError() {
@@ -37,7 +38,6 @@ export class TextAreaFieldComponent {
     const errors: string[] = []
     if (this.control.errors != null)
       for (const error in this.control.errors) {
-        console.log(error);
         errors.push(this.ERROR_MESSAGES[error]);
       }
     return errors;

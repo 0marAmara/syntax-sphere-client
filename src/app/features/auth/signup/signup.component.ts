@@ -63,7 +63,6 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/posts/']);
       },
       error: (error) => {
-        console.log(error, 'error');
         this.errorMessage = error.error.username;
         this.signupForm.get('username')?.setErrors([error.error.username]);
       },

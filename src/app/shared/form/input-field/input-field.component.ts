@@ -21,6 +21,8 @@ export class InputFieldComponent {
   ERROR_MESSAGES: Record<string, string> = {
     required: `This field is required`,
     email: `The email field is invalid`,
+    minlength: `This field is too short`,
+    pattern: `This URL is not valid`
   }
 
   get isError() {
@@ -39,7 +41,6 @@ export class InputFieldComponent {
     const errors: string[] = []
     if (this.control.errors != null)
       for (const error in this.control.errors) {
-        console.log(error);
         errors.push(this.ERROR_MESSAGES[error]);
       }
     return errors;
