@@ -1,0 +1,12 @@
+<div class="mb-6">
+  <label [for]="inputId" [className]="labelStyle">{{label}}</label>
+  <textarea
+    [formControl]="control"
+    [id]="inputId"
+    [placeholder]="placeholder"
+    [className]="inpStyle"
+  ></textarea>
+  @if (isError) {
+    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{errorMessages[0]}}</p>
+  }
+</div>
