@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <app-input-field
       inputId="username"
       label="Username"
@@ -24,7 +24,7 @@
     }
     <app-button
       type="submit"
-      [disabled]="!form.valid"
+      [disabled]="!loginForm.valid"
     >
       Login
     </app-button>

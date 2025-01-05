@@ -49,7 +49,6 @@ export class NewPostFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     const newPost: PostElement = {
       title: this.form.value.title,
       content: this.form.value.content,

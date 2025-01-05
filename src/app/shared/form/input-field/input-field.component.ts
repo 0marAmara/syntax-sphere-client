@@ -17,13 +17,13 @@ export class InputFieldComponent {
   @Input() inpType = 'text';
   @Input() placeholder?: string;
   @Input() styleType: formFieldStyleType = 'default';
+  @Input() ERROR_MESSAGES_RECORD: Record<string, string> = {
+    required: 'This field is required',
+    email: 'The email field is invalid',
+    minlength: 'This field is too short',
+    pattern: 'The value entered does not match the required pattern'
+  };
 
-  ERROR_MESSAGES: Record<string, string> = {
-    required: `This field is required`,
-    email: `The email field is invalid`,
-    minlength: `This field is too short`,
-    pattern: `This URL is not valid`
-  }
 
   get isError() {
     return !this.control.valid && this.control.touched && this.control.dirty;
@@ -41,7 +41,7 @@ export class InputFieldComponent {
     const errors: string[] = []
     if (this.control.errors != null)
       for (const error in this.control.errors) {
-        errors.push(this.ERROR_MESSAGES[error]);
+        errors.push(this.ERROR_MESSAGES_RECORD[error]);
       }
     return errors;
   }

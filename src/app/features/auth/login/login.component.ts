@@ -1,7 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {FormFieldComponent} from '../../../shared/form-field/form-field.component';
-import {FormControl, FormGroup, FormsModule, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import {ButtonComponent} from '../../../shared/button/button.component';
 import {AuthService} from '../../../core/services/auth.service';
 import {LoginUser} from '../../../shared/models/user.model';
@@ -39,12 +38,13 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password') as FormControl;
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     this.errorMessage = "";
     const user: LoginUser = {
-      username: form.value.username,
-      password: form.value.password,
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password,
     }
+    console.log(user);
     this.authService.login(user).subscribe({
       next: (res) => {
         this.router.navigate(['/posts']);
@@ -54,4 +54,5 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
 }

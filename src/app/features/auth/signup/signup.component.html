@@ -1,63 +1,51 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <div class="grid gap-6 md:grid-cols-2">
-    <app-form-field
+    <app-input-field
+      [control]="firstNameControl"
       label="First name"
-      for="first_name"
-      name="firstName"
+      inputId="firstName"
       placeholder="John"
-      formControlName="firstName"
-      [error]="formInputError('firstName')"
-      [errorMsg]="formInputError('firstName') ? getFirstNameErrorMessage() : ''"
-    ></app-form-field>
-    <app-form-field
+      [ERROR_MESSAGES_RECORD]="getErrorMessageRecord('firstName')"
+      ></app-input-field>
+    <app-input-field
+      [control]="lastNameControl"
       label="Last name"
-      for="last_name"
-      name="lastName"
+      inputId="lastName"
       placeholder="Doe"
-      formControlName="lastName"
-      [error]="formInputError('lastName')"
-      [errorMsg]="formInputError('lastName') ? getLastNameErrorMessage() : ''"
-    ></app-form-field>
+      [ERROR_MESSAGES_RECORD]="getErrorMessageRecord('lastName')"
+    ></app-input-field>
   </div>
-  <app-form-field
+  <app-input-field
+    [control]="usernameControl"
     label="Username"
-    for="username"
-    name="username"
+    inputId="username"
     placeholder="JohnDoe"
-    formControlName="username"
-    [error]="formInputError('username')"
-    [errorMsg]="formInputError('username') ? getUsernameErrorMessage() : ''"
-  ></app-form-field>
-  <app-form-field
+    [ERROR_MESSAGES_RECORD]="getErrorMessageRecord('username')"
+  ></app-input-field>
+
+  <app-input-field
+    [control]="emailControl"
     label="Email Address"
-    for="email"
-    name="email"
-    inpType="email"
+    inputId="email"
     placeholder="John.doe@gmail.com"
-    formControlName="email"
-    [error]="formInputError('email')"
-    [errorMsg]="formInputError('email') ? getEmailErrorMessage() : ''"
-  ></app-form-field>
-  <app-form-field
+    [ERROR_MESSAGES_RECORD]="getErrorMessageRecord('email')"
+    ></app-input-field>
+  <app-input-field
+    [control]="passwordControl"
     label="Password"
-    for="password"
-    name="password"
-    inpType="password"
+    inputId="password"
     placeholder="•••••••••"
-    formControlName="password"
-    [error]="formInputError('password')"
-    [errorMsg]="formInputError('password') ? getPasswordErrorMessage() : ''"
-  ></app-form-field>
-  <app-form-field
-    label="Confirm password"
-    for="confirm_password"
-    name="confirm_password"
     inpType="password"
-    placeholder="•••••••••"
-    formControlName="confirmPassword"
-    [error]="formInputError('confirmPassword')"
-    [errorMsg]="formInputError('confirmPassword') ? getConfirmPasswordErrorMessage() : ''"
-  ></app-form-field>
+    [ERROR_MESSAGES_RECORD]="getErrorMessageRecord('password')"
+  ></app-input-field>
+  <app-input-field
+  [control]="confirmPasswordControl"
+  label="Confirm Password"
+  inputId="confirm_password"
+  placeholder="•••••••••"
+  inpType="password"
+  [ERROR_MESSAGES_RECORD]="getErrorMessageRecord('confirmPassword')"
+></app-input-field>
   <div class="flex mb-4">
     <p class="text-sm font-medium text-gray-900 dark:text-gray-300 mr-2">
       Already have an account?
