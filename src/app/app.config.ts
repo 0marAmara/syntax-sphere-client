@@ -2,13 +2,16 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors} from '@angular/common/http';
-import {authInterceptorFunction} from './core/interceptors/auth-interceptor.function';
+import {
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { AttachAccessTokenInterceptor } from '@interceptors/attach-access-token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptorFunction])),
-  ]
+    provideHttpClient(withInterceptors([AttachAccessTokenInterceptor])),
+  ],
 };

@@ -19,6 +19,7 @@ import {AuthResponseModel} from './auth-response.model';
   providedIn: 'root' // Makes this service available application-wide
 })
 export class HttpService {
+  
   private http = inject(HttpClient); // Injects Angular's HttpClient for making HTTP requests
   private router = inject(Router); // Injects Angular's Router for navigation
   private baseUrl: string = environment.baseUrl; // Base URL for API endpoints, fetched from environment
