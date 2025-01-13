@@ -2,10 +2,7 @@ import { Observable } from 'rxjs';
 import {
   HttpClient,
   HttpContext,
-  HttpContextToken,
-  HttpEvent,
   HttpParams,
-  HttpRequest,
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { SKIP_AUTH } from 'src/app/core/constants';

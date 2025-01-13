@@ -1,9 +1,9 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpService } from './http.service';
-import { LoginUser, SignupUser } from '../../shared/models/user.model';
-import { AuthResponseModel } from './auth-response.model';
-import { tap } from 'rxjs';
-import { StorageService } from '@app/shared/services';
+import {inject, Injectable} from '@angular/core';
+import {HttpService} from './http.service';
+import {LoginUser, SignupUser} from '../../shared/models/user.model';
+import {AuthResponseModel} from './auth-response.model';
+import {tap} from 'rxjs';
+import {StorageService} from '@app/shared/services';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +14,14 @@ export class AuthService {
 
   signup(user: SignupUser) {
     return this.http
-      .post<AuthResponseModel>('signup/', user)
+      .post<AuthResponseModel>('signup/', user, true)
       .pipe(
         tap((res) => this.setTokens(res)));
   }
 
   login(user: LoginUser) {
     return this.http
-      .post<AuthResponseModel>('signin/', user)
+      .post<AuthResponseModel>('signin/', user, true)
       .pipe(
         tap((res) => this.setTokens(res)));
   }

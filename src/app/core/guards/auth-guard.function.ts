@@ -1,11 +1,14 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
-import {getAuthTokens} from '../../shared/auth-tokens.function';
+import {StorageService} from '@services/storage.service';
 
-export const authGuardFunction:CanActivateFn = (route, state)=>{
+export const authGuardFunction: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  if(getAuthTokens().access.length==0&&getAuthTokens().refresh.length==0)
+  const storageService = inject(StorageService);
+  const access = storageService.accessToken;
+  if (access == null) {
     return true;
+  }
   router.navigate(['/posts']);
   return false;
 }
