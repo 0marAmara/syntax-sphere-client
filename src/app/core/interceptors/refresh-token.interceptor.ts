@@ -20,7 +20,6 @@ export const RefreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  //TODO idk its complicated
   return next(req).pipe(catchError(err => sessionTimeoutHandler(
     err,
     () => next(req),
