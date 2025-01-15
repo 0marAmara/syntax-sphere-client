@@ -46,6 +46,10 @@ export const routes: Routes = [
       {
         path: 'posts/:id',
         component: PostPageComponent,
+      },
+      {
+        path: 'search',
+        component: PostsPageComponent,
       }
     ]
   }

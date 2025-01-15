@@ -1,10 +1,12 @@
-@if (!isCreating) {
-  <app-button (click)="onCreatePost()">
-    New Post
-  </app-button>
-} @else {
-  <app-new-post-form></app-new-post-form>
+@if (!isSearching) {
+  @if (!isCreating) {
+    <app-button (click)="onCreatePost()">
+      New Post
+    </app-button>
+  } @else {
+    <app-new-post-form></app-new-post-form>
+  }
+  <br>
+  <br>
 }
-<br>
-<br>
 <app-posts-list></app-posts-list>

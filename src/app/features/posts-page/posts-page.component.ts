@@ -4,6 +4,7 @@ import {ButtonComponent} from '../../shared/button/button.component';
 import {NewPostFormComponent} from './new-post-form/new-post-form.component';
 import {PostsService} from '../../core/services/posts.service';
 import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-posts-page',
@@ -16,14 +17,18 @@ import {Subscription} from 'rxjs';
   styleUrl: './posts-page.component.scss'
 })
 export class PostsPageComponent implements OnInit, OnDestroy {
-  postsService = inject(PostsService);
+  private postsService = inject(PostsService);
+  private activatedRoute = inject(ActivatedRoute);
   postsSubscription!: Subscription;
   isCreating = false;
+  isSearching!: boolean;
 
+//TODO implement the pagination for the search
   ngOnInit() {
-    this.postsSubscription=this.postsService.postResponseSubject.subscribe(posts => {
-      this.isCreating=false;
+    this.postsSubscription = this.postsService.postResponseSubject.subscribe(posts => {
+      this.isCreating = false;
     })
+    this.isSearching = this.activatedRoute.snapshot.queryParams['query'] !== undefined;
   }
 
   ngOnDestroy() {
