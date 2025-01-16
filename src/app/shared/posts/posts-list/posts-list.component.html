@@ -9,7 +9,7 @@
     @for (post of posts(); track post.id) {
       <li [post]="post" (likeHandler)="refresh()"></li>
     }
-    @if (totalLength > posts().length) {
+    @if (totalLength > posts().length && searchTerm === '') {
       <app-button (click)="loadMore()">
         @if (isLoading) {
           <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-white animate-spin"
@@ -32,6 +32,15 @@
 @if (!isLoading && posts().length === 0) {
   <div
     class="m-auto block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-    <p class="font-normal text-gray-700 dark:text-gray-400">No posts available!</p>
+    <p class="font-normal text-gray-700 dark:text-gray-400">
+      @if (searchTerm !== '') {
+        No posts match your search!
+      } @else {
+        No posts available!
+      }
+    </p>
   </div>
+}
+@if (totalLength >= 10 && searchTerm !== '') {
+  <app-pagination [totalPages]="Math.ceil(totalLength/10)"></app-pagination>
 }

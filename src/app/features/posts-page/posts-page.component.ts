@@ -1,8 +1,8 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {PostsListComponent} from '../../shared/posts/posts-list/posts-list.component';
-import {ButtonComponent} from '../../shared/button/button.component';
+import {PostsListComponent} from '@shared/posts/posts-list/posts-list.component';
+import {ButtonComponent} from '@shared/button/button.component';
 import {NewPostFormComponent} from './new-post-form/new-post-form.component';
-import {PostsService} from '../../core/services/posts.service';
+import {PostsService} from '@core/services';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 
@@ -23,7 +23,6 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   isCreating = false;
   isSearching!: boolean;
 
-//TODO implement the pagination for the search
   ngOnInit() {
     this.postsSubscription = this.postsService.postResponseSubject.subscribe(posts => {
       this.isCreating = false;
@@ -39,3 +38,4 @@ export class PostsPageComponent implements OnInit, OnDestroy {
     this.isCreating = true;
   }
 }
+//TODO divide the posts page component to two component one for search and other for normal timeline.

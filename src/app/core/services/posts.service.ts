@@ -12,8 +12,8 @@ export class PostsService {
   private _postResponse?: PostResponse;
   postResponseSubject = new BehaviorSubject<PostResponse | undefined>(this._postResponse);
 
-  loadPosts(limit: number = 10, search: string = ''): void {
-    const params = new HttpParams().set('limit', limit).set('search', search);
+  loadPosts(limit: number = 10, search: string = '',offset=0): void {
+    const params = new HttpParams().set('limit', limit).set('search', search).set('offset', offset);
     this.http
       .get<PostResponse>('posts/', params)
       .pipe(

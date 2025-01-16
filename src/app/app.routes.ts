@@ -1,12 +1,12 @@
 import {Routes} from '@angular/router';
-import {LoginComponent} from './features/auth/login/login.component';
-import {SignupComponent} from './features/auth/signup/signup.component';
-import {AuthLayoutComponent} from './shared/auth-layout/auth-layout.component';
-import {BaseLayoutComponent} from './shared/base-layout/base-layout.component';
-import {PostsPageComponent} from './features/posts-page/posts-page.component';
-import {authGuardFunction} from './core/guards/auth-guard.function';
-import {appGuardFunction} from './core/guards/app-guard.function';
-import {PostPageComponent} from './features/post-page/post-page.component';
+import {LoginComponent} from '@app/features/auth/login/login.component';
+import {SignupComponent} from '@app/features/auth/signup/signup.component';
+import {AuthLayoutComponent} from '@shared/auth-layout/auth-layout.component';
+import {BaseLayoutComponent} from '@shared/base-layout/base-layout.component';
+import {PostsPageComponent} from '@app/features/posts-page/posts-page.component';
+import {authGuardFunction} from '@guards/auth-guard.function';
+import {appGuardFunction} from '@guards/app-guard.function';
+import {PostPageComponent} from '@app/features/post-page/post-page.component';
 
 export const routes: Routes = [
   {
@@ -48,9 +48,14 @@ export const routes: Routes = [
         component: PostPageComponent,
       },
       {
-        path: 'search',
+        path: 'search/:page',
         component: PostsPageComponent,
-      }
+      },
+      {
+        path: 'search',
+        pathMatch: 'full',
+        redirectTo: 'search/1',
+      },
     ]
   }
 ];

@@ -14,7 +14,6 @@ import {FormsModule} from '@angular/forms';
 export class NavbarComponent {
   router = inject(Router);
 
-//TODO implement the mobile onSearch
   onSearch(searchField: HTMLInputElement) {
     if (searchField.value.trim().length === 0)
       this.router.navigate(['/']);
