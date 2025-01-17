@@ -1,16 +1,16 @@
 <ol class="relative border-s border-gray-200 dark:border-gray-700">
   @if (posts().length === 0 && isLoading) {
-    <li post-skeleton></li>
-    <li post-skeleton></li>
-    <li post-skeleton></li>
-    <li post-skeleton></li>
-    <li post-skeleton></li>
+    <li class="mb-10 ms-6" post-skeleton></li>
+    <li class="mb-10 ms-6" post-skeleton></li>
+    <li class="mb-10 ms-6" post-skeleton></li>
+    <li class="mb-10 ms-6" post-skeleton></li>
+    <li class="mb-10 ms-6" post-skeleton></li>
   } @else if (posts().length !== 0) {
     @for (post of posts(); track post.id) {
       <li class="mb-10 ms-6" [post]="post" (likeHandler)="refresh()"></li>
     }
     @if (totalLength > posts().length && searchTerm === '') {
-      <li>
+      <li >
         <app-button (click)="loadMore()">
           @if (isLoading) {
             <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-white animate-spin"

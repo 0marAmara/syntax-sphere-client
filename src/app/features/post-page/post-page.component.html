@@ -1,2 +1,6 @@
-<app-post-element></app-post-element>
+@if(!loading && post()){
+  <div [post]="post()"></div>
+} @else {
+  <div post-skeleton></div>
+}
 <app-comments-list></app-comments-list>

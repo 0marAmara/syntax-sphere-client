@@ -57,4 +57,8 @@ export class PostsService {
       })
     );
   }
+
+  loadPost(postId: string) {
+    return this.http.get<PostModel>(`posts/${postId}/`);
+  }
 }
