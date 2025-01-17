@@ -1,5 +1,5 @@
 import {Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
-import {PostComponent} from '../post/post.component';
+import {PostComponent} from '@shared/posts/posts-list/post/post.component';
 import {PostsService} from '@core/services';
 import {PostModel} from '../../models/post.model';
 import {PostSkeletonComponent} from '../post-skeleton/post-skeleton.component';

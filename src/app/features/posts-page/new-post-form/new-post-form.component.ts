@@ -32,6 +32,7 @@ export class NewPostFormComponent implements OnInit {
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(4)]),
       content: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      //TODO update the link validator
       url: new FormControl('', [Validators.pattern('https?:\/\/(?:www\.)?[^\s\/$.?#].[^\s]*'),]),
     })
   }
