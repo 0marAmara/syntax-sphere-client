@@ -49,7 +49,7 @@ export class PostsService {
     );
   }
 
-  addPost(post: PostElement) {
+  addPost(post: FormData) {
     return this.http.post<PostModel>('posts/', post).pipe(
       catchError((error) => {
         console.error('Failed to add post:', error);
