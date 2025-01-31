@@ -12,7 +12,9 @@
       inputId="content"
       label="Content"
       [control]="contentControl"
-      ></app-text-area-field>
+    ></app-text-area-field>
+    <app-file-upload label="Media" inputId="media" [control]="imageControl"
+                     (setFile)="setImage($event)"></app-file-upload>
     @if (!urlIsEnabled) {
       <app-button
         (click)="toggleUrl()"
@@ -29,7 +31,6 @@
         [control]="urlControl"
       ></app-input-field>
     }
-
     <div>
       <app-button
         [disabled]="!form.valid"
@@ -37,7 +38,5 @@
         Create Post
       </app-button>
     </div>
-
-
   </form>
 </div>
