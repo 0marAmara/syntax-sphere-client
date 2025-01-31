@@ -33,7 +33,7 @@ export class PostPageComponent implements OnInit {
       next: post => {
         this.post.set(post);
       },
-      error: (err) => {
+      error: () => {
         this.routerService.navigate(['/posts']);
       },
       complete: () => {

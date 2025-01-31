@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpService} from './http.service';
-import {LikeResponse, PostElement, PostModel, PostResponse} from '@shared/models/post.model';
+import {LikeResponse,PostModel, PostResponse} from '@shared/models/post.model';
 import {BehaviorSubject, catchError, tap} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
 
