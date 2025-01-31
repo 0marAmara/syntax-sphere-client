@@ -1,10 +1,12 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {CommentsListComponent} from '@shared/comments/comments-list/comments-list.component';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PostsService} from '@core/services';
 import {PostModel} from '@shared/models/post.model';
 import {PostComponent} from '@shared/posts/posts-list/post/post.component';
 import {PostSkeletonComponent} from '@shared/posts/post-skeleton/post-skeleton.component';
+import {CommentsService} from '@services/comments.service';
+import {CommentModel} from '@shared/models/comment.model';
 
 @Component({
   selector: 'app-post-page',
@@ -16,12 +18,14 @@ import {PostSkeletonComponent} from '@shared/posts/post-skeleton/post-skeleton.c
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.scss'
 })
-export class PostPageComponent implements OnInit{
+export class PostPageComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private routerService = inject(Router);
   private postsService = inject(PostsService);
-  post = signal<PostModel|undefined>(undefined);
+  private commentsService = inject(CommentsService);
+  post = signal<PostModel | undefined>(undefined);
+  comments: CommentModel[] = [];
   loading = true;
-  error:string = '';
 
   ngOnInit() {
     const postId = this.route.snapshot.params['id'];
@@ -30,10 +34,16 @@ export class PostPageComponent implements OnInit{
         this.post.set(post);
       },
       error: (err) => {
-        this.error = err.error.message;
+        this.routerService.navigate(['/posts']);
       },
       complete: () => {
+        this.loading = false;
       }
     });
+    this.commentsService.loadComments(postId).subscribe({
+      next: commentResponse => {
+        this.comments = commentResponse.results;
+      }
+    })
   }
 }

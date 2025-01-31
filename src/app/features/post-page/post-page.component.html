@@ -1,6 +1,6 @@
-@if(!loading && post()){
+@if(!loading){
   <div [post]="post()"></div>
-} @else {
+}@else {
   <div post-skeleton></div>
 }
 <app-comments-list></app-comments-list>
