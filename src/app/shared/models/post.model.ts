@@ -8,12 +8,14 @@ export interface PostModel {
   like_count: number;
   user_id: number;
   post_id: string;
+  image: string;
 }
 
 export interface PostElement{
   title: string;
   content: string;
   url?: string;
+  image?: string;
 }
 
 export interface PostResponse {
