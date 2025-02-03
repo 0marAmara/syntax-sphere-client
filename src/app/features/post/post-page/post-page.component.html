@@ -1,0 +1,13 @@
+@if (isLoading$|async) {
+  <div post-skeleton></div>
+} @else if (post$|async) {
+  <div [post]="(post$|async)!"></div>
+}
+<!--@if(!isLoading){-->
+<!--  <div [post]="post()"></div>-->
+<!--  <app-new-comment-form [postId]="postId"></app-new-comment-form>-->
+<!--  <app-comments-list [comments]="comments"></app-comments-list>-->
+<!--  <button (click)="loadMore()">LoadMore</button>-->
+<!--}@else {-->
+<!--  <div post-skeleton></div>-->
+<!--}-->

@@ -4,6 +4,7 @@ export interface CommentModel {
   post_id:string,
   comment:string,
   posted_at: string,
+  username: string,
 }
 
 export interface CommentElement {

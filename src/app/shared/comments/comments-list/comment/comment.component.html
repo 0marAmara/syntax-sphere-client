@@ -1,1 +1,18 @@
-<p>comment works!</p>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4">
+  <div class="flex items-center space-x-4">
+    <div class="flex-shrink-0">
+      <img class="h-10 w-10 rounded-full" src="https://via.placeholder.com/40" alt="User Avatar">
+    </div>
+    <div class="flex-1">
+      <div class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        {{ commentObj().username }}
+      </div>
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        {{ commentObj().posted_at | date: 'medium' }}
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 text-gray-700 dark:text-gray-300">
+    {{ commentObj().comment }}
+  </div>
+</div>

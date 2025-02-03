@@ -8,11 +8,11 @@ import {
 } from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {ConfirmPasswordValidator} from './confirm-password.validator';
-import {ButtonComponent} from '../../../shared/button/button.component';
-import {SignupUser} from '../../../shared/models/user.model';
-import {AuthService} from '../../../core/services/auth.service';
-import {InputFieldComponent} from '../../../shared/form/input-field/input-field.component';
-import {ERROR_MESSAGES} from '../../../shared/utility/form-error-messages';
+import {ButtonComponent} from '@shared/button/button.component';
+import {SignupUser} from '@shared/models/user.model';
+import {AuthService} from '@core/services';
+import {InputFieldComponent} from '@shared/form/input-field/input-field.component';
+import {ERROR_MESSAGES} from '@shared/utility/form-error-messages';
 
 @Component({
   selector: 'app-signup',

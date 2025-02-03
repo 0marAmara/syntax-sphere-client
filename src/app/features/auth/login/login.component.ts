@@ -1,10 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
-import {ButtonComponent} from '../../../shared/button/button.component';
-import {AuthService} from '../../../core/services/auth.service';
-import {LoginUser} from '../../../shared/models/user.model';
-import {InputFieldComponent} from '../../../shared/form/input-field/input-field.component';
+import {ButtonComponent} from '@shared/button/button.component';
+import {AuthService} from '@core/services';
+import {LoginUser} from '@shared/models/user.model';
+import {InputFieldComponent} from '@shared/form/input-field/input-field.component';
 
 @Component({
   selector: 'app-login',

@@ -1,0 +1,18 @@
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+  <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Create a New Comment</h2>
+  <form class="space-y-6" (ngSubmit)="onSubmit()">
+    <app-text-area-field
+      placeholder="What do you think?"
+      inputId="comment"
+      label="Comment"
+      [control]="commentControl"
+    ></app-text-area-field>
+    <div>
+      <app-button
+        [disabled]="!form.valid"
+      >
+        Comment
+      </app-button>
+    </div>
+  </form>
+</div>

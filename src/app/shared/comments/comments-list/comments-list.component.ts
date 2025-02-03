@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, input} from '@angular/core';
+import {CommentModel} from '@shared/models/comment.model';
 import {CommentComponent} from '@shared/comments/comments-list/comment/comment.component';
 
 @Component({
@@ -10,5 +11,5 @@ import {CommentComponent} from '@shared/comments/comments-list/comment/comment.c
   styleUrl: './comments-list.component.scss'
 })
 export class CommentsListComponent {
-
+  comments = input<CommentModel[]>();
 }

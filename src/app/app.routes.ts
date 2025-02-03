@@ -3,10 +3,10 @@ import {LoginComponent} from '@app/features/auth/login/login.component';
 import {SignupComponent} from '@app/features/auth/signup/signup.component';
 import {AuthLayoutComponent} from '@shared/auth-layout/auth-layout.component';
 import {BaseLayoutComponent} from '@shared/base-layout/base-layout.component';
-import {PostsPageComponent} from '@app/features/posts-page/posts-page.component';
+import {PostsPageComponent} from '@app/features/posts/posts-page/posts-page.component';
 import {authGuardFunction} from '@guards/auth-guard.function';
 import {appGuardFunction} from '@guards/app-guard.function';
-import {PostPageComponent} from '@app/features/post-page/post-page.component';
+import {PostPageComponent} from '@app/features/post/post-page/post-page.component';
 
 export const routes: Routes = [
   {

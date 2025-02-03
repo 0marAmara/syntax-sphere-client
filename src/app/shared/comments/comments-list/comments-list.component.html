@@ -1,5 +1,7 @@
-<ul>
-  <li comment></li>
-  <li comment></li>
-  <li comment></li>
-</ul>
+@if (comments()){
+  <ul>
+    @for (comment of comments(); track comment.id) {
+      <li comment></li>
+    }
+  </ul>
+}

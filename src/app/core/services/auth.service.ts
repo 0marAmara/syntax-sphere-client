@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpService} from './http.service';
-import {LoginUser, SignupUser} from '../../shared/models/user.model';
+import {LoginUser, SignupUser} from '@shared/models/user.model';
 import {AuthResponseModel} from './auth-response.model';
 import {tap} from 'rxjs';
 import {StorageService} from '@app/shared/services';
